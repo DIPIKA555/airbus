@@ -11,3 +11,46 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.css-hip9hq-MuiPaper-root-MuiAppBar-root{
+  background-color: #ffeb3b !important;
+  color: #000 !important;
+}
+
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+.p-3 {
+  padding: 0 !important;
+}
+
+@media screen and (max-width: 800px) {
+  .css-1blauzg {
+    width: 70% !important;
+    position: absolute !important;
+    /* top: 15% !important;
+    left: 10% !important; */
+
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+.w-50 {
+  width: 75% !important;
+}
+  
+}
+input, button, select, optgroup, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  padding: 10px;
+  background-color: aliceblue;
+}
+
+.css-hh1s1m-JoyCardCover-root [data-first-child]{
+  border-radius: 0 !important;
+}
