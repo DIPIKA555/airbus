@@ -46,7 +46,7 @@ export default function SignUPModal(props) {
   }
 
   return (
-    <div>
+    <Box>
       {/* <Button onClick={handleOpen} variant = "outlined" color="inherit" >Sign Up</Button> */}
       <Modal
         open={open}
@@ -59,25 +59,25 @@ export default function SignUPModal(props) {
        {/* <MdLockOpen position={"absolute"} size="20px" textAlign="center"/>
         */}
         {/* {LockIcon} */}
-        <div style={{width: "100%", display: 'flex', justifyContent: "center"}}>
-          <p style={{backgroundColor: "#9c27b0", textAlign: "center", color :"white", width: "30px", padding: "3px", borderRadius: "100px"}}><MdLockOpen/></p>
-        </div>
-        <div className="text-center">
+        <Box style={{width: "100%", display: 'flex', justifyContent: "center"}}>
+          <Typography style={{backgroundColor: "#9c27b0", textAlign: "center", color :"white", width: "30px", padding: "3px", borderRadius: "100px"}}><MdLockOpen/></Typography>
+        </Box>
+        <Box className="text-center">
           <h5>Sign Up</h5>
-      </div>
+      </Box>
       <MDBInput wrapperClass='mb-4' label='Name' id='form1' type='text'/>
       <MDBInput wrapperClass='mb-4' label='Email address' id='form2' type='email'/>
       <MDBInput wrapperClass='mb-4' label='Password' id='form3' type='password'/>
       <MDBBtn className="mb-4">Sign Up</MDBBtn>
 
-      <div className="text-center">
-        <p style={{color:"rgb(81,118, 178)", textAlign:"right", textDecoration:"underline"}}>Go to <span onClick={handleClick}>Login</span></p>
-      </div>
+      <Box className="text-center">
+        <Typography style={{color:"rgb(81,118, 178)", textAlign:"right", textDecoration:"underline"}}>Go to <span onClick={handleClick}>Login</span></Typography>
+      </Box>
 
       </MDBContainer>
       </Box>
 
       </Modal>
-    </div>
+    </Box>
   );
 }
