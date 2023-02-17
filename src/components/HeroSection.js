@@ -4,21 +4,31 @@ import Card from "@mui/joy/Card";
 import CardCover from "@mui/joy/CardCover";
 import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
-
 import HeroBgImage from "../assets/herosection_bg.jpg";
 
+import { useDispatch, useSelector } from "react-redux";
+import { fromToSetInRedux } from "../app/SearchSlice";
+
+
 export default function BasicCard() {
+     
+  const dispatch = useDispatch();
+
     const [from , setFrom] = React.useState("");
     const [to , setTo] = React.useState("");
+    const [depart , setDepart] = React.useState("");
+    const [returnBack, setReturnBack] = React.useState("");
+
 
     const handleSearch = (e) =>{
         e.preventDefault();
 
-        if(from && to ){
-           
-        }else {
-          
-        }
+        // if(from && to ){
+          dispatch(fromToSetInRedux({from: from , to : to}));
+        // }
+        // }else {
+        //   alert("Fiill input");
+        // }
     }
 
 
@@ -52,8 +62,11 @@ export default function BasicCard() {
                   type="date"
                   name=""
                   id="depart"
-                  placeholder="01/Sa/2023"
+                  value = {depart}
+                  // placeholder="01/Sa/2023"
+                  onChange={(e)=> setDepart(e.target.value)}
                 />
+
               </Box>
 
               <Box className="inputConatiner">
@@ -62,7 +75,10 @@ export default function BasicCard() {
                   type="date"
                   name=""
                   id="return"
-                  placeholder="01/Sa/2023"
+                  value = {returnBack}
+                  // placeholder="01/Sa/2023"
+                  onChange={(e)=> setReturnBack(e.target.value)}
+
                 />
               </Box>
 

@@ -1,10 +1,43 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import FlightMap from "../assets/flightMap.png";
+import PaginationControlled from "./PaginationControlled";
+import { SearchFlights } from "../app/SearchSlice";
+// import { totalFlights } from "../app/SearchSlice";
+import { useNavigate } from "react-router-dom";
 
 const AllFlights = () => {
+  const allSearchState = useSelector(state => state.search);
+  // const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
   const [allFlights, setAllFlights] = useState([]);
   const [loading, setLoading] = useState(false);
+  // const [total, setTotal] = useState(0);
+      
+    
+  const getAvailableFlights =async (from, to) =>{
+    setLoading(true);
+   const searchURL = await fetch(`https://content.newtonschool.co/v1/pr/63b86a1d735f93791e09cb11/flights?from=${from}&to=${to}`)
+     const response = await searchURL.json();
+     setLoading(false);
+     setAllFlights(response);
+    
+  }
+
+  useEffect(() =>{
+      if(allSearchState.from && allSearchState.to){
+        const from = allSearchState.from.charAt(0).toUpperCase()+allSearchState.from.slice(1);
+        const to = allSearchState.to.charAt(0).toUpperCase()+allSearchState.to.slice(1);
+        // alert(from + ""+ to);
+         getAvailableFlights(from , to);
+      }else {
+        getAllFlights();
+      }
+  }, [allSearchState.from , allSearchState.to])
+
 
   const getAllFlights = async () => {
     setLoading(true);
@@ -14,14 +47,22 @@ const AllFlights = () => {
     const res = await URL.json();
     setLoading(false);
     setAllFlights(res);
+    // dispatch(SearchFlights(res));
+    // setTotal(res.length);
+    // dispatch(totalFlights(total));
   };
 
   useEffect(() => {
     getAllFlights();
   }, []);
 
+
+
+
   const bookFlight = (e) => {
     e.preventDefault();
+    navigate("/payment");
+
   };
 
   return (
@@ -75,6 +116,7 @@ const AllFlights = () => {
         <div className="width_hundred map" style={{borderRadius: "100px"}}>
           <img src={FlightMap} style={{maxWidth: "100%"}} alt="Flight Map" />
         </div>
+
 
     </div>
   );

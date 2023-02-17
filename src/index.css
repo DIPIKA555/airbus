@@ -230,3 +230,9 @@ h5, .h5{
   font-weight: bold;
   font-size: 1.4rem;
 }
+.css-wjh20t-MuiPagination-ul{
+    justify-content: center;
+}
+.css-ahj2mt-MuiTypography-root{
+  margin-top: 1em !important;
+}
