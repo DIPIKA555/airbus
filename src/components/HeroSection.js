@@ -8,6 +8,20 @@ import Typography from "@mui/joy/Typography";
 import HeroBgImage from "../assets/herosection_bg.jpg";
 
 export default function BasicCard() {
+    const [from , setFrom] = React.useState("");
+    const [to , setTo] = React.useState("");
+
+    const handleSearch = (e) =>{
+        e.preventDefault();
+
+        if(from && to ){
+           
+        }else {
+          
+        }
+    }
+
+
   return (
     <Box>
       <Card sx={{ minWidth: 300, flexGrow: 1 }}>
@@ -19,18 +33,17 @@ export default function BasicCard() {
           <Box
             id="cardContent"
             >
-
               <Typography id="heroText"  textColor="#fff">Let the journey begin</Typography>
 
             <Box id="hero_search_flights">
               <Box className="inputConatiner">
                 <label htmlFor="from">From</label>
-                <input type="text" name="" id="from" placeholder="Amsterdam" />
+                <input type="text" value={from} name="" id="from" placeholder="Amsterdam" onChange={(e)=> setFrom(e.target.value)}/>
               </Box>
 
               <Box className="inputConatiner">
                 <label htmlFor="to">To</label>
-                <input type="text" name="" id="to" placeholder="Stockholm" />
+                <input type="text" name="" id="to" placeholder="Stockholm" value={to} onChange={(e)=> setTo(e.target.value)}/>
               </Box>
 
               <Box className="inputConatiner">
@@ -53,7 +66,7 @@ export default function BasicCard() {
                 />
               </Box>
 
-              <button type="submit" id="btn">
+              <button type="submit" id="btn" onClick={handleSearch}>
                 SEARCH FLIGHTS
               </button>
             </Box>
