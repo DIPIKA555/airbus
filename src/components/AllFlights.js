@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import FlightMap from "../assets/flightMap.png";
 import { SearchFlights } from "../app/SearchSlice";
-// import { totalFlights } from "../app/SearchSlice";
 import { useNavigate } from "react-router-dom";
 import { flightPrice } from "../app/SearchSlice";
 

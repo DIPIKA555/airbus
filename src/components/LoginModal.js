@@ -4,8 +4,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import {MdLockOpen} from "react-icons/md"
-// import LockIcon from '@mui/icons-material/Lock';
-// import {Link} from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import SignUPModal from './SignUpModal';
 import { UserLogin } from '../app/SearchSlice';

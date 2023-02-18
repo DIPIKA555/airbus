@@ -9,15 +9,12 @@ import IconButton from '@mui/material/IconButton';
 import logo from "../assets/logo.webp"
 import { Stack } from '@mui/system';
 
-// import LoginModal from './LoginModal';
 import SignUPModal from './SignUpModal';
 import LoginModal from './LoginModal';
 import {Routes, Route} from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserLogin } from '../app/SearchSlice';
-// import Home from '../pages/Home';
-// import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 
@@ -27,7 +24,6 @@ export default function Navbar() {
 
   const login = useSelector(state => state.search.isUserLogin);
 
-  //  const [login, setLogin] = useState(false);
 
   const navigate = useNavigate();
 
