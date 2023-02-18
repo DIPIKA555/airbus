@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {from : "" , to : ""};
+const initialState = {from : "" , to : "", price: 0, isUserLogin : false};
 
 const SearchSlice = createSlice({
     name: "search",
@@ -15,9 +15,15 @@ const SearchSlice = createSlice({
            state.to = action.payload.to;
 
         },
+        flightPrice: (state, action) =>{
+            state.price = action.payload;
+        },
+        UserLogin: (state, action)=>{
+            state.isUserLogin = action.payload;
+        }
     
     }
 })
 
-export const { fromToSetInRedux} = SearchSlice.actions;
+export const { fromToSetInRedux, flightPrice, UserLogin} = SearchSlice.actions;
 export default SearchSlice.reducer;

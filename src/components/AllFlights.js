@@ -6,24 +6,37 @@ import PaginationControlled from "./PaginationControlled";
 import { SearchFlights } from "../app/SearchSlice";
 // import { totalFlights } from "../app/SearchSlice";
 import { useNavigate } from "react-router-dom";
+import { flightPrice } from "../app/SearchSlice";
 
 const AllFlights = () => {
   const allSearchState = useSelector(state => state.search);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
 
   const [allFlights, setAllFlights] = useState([]);
   const [loading, setLoading] = useState(false);
-  // const [total, setTotal] = useState(0);
+  const [notAvailable, setNotAvailable] = useState(false);
       
     
   const getAvailableFlights =async (from, to) =>{
     setLoading(true);
-   const searchURL = await fetch(`https://content.newtonschool.co/v1/pr/63b86a1d735f93791e09cb11/flights?from=${from}&to=${to}`)
-     const response = await searchURL.json();
-     setLoading(false);
-     setAllFlights(response);
+
+      const searchURL = await fetch(`https://content.newtonschool.co/v1/pr/63b86a1d735f93791e09cb11/flights?from=${from}&to=${to}`)
+      const response = await searchURL.json();
+      if(response.length === 0){
+        // setLoading(false);
+        setNotAvailable(true);
+
+      }else {
+        setLoading(false);
+        setNotAvailable(false);
+        setAllFlights(response);
+      }
+      // setLoading(false);
+      
+ 
+  
     
   }
 
@@ -59,17 +72,19 @@ const AllFlights = () => {
 
 
 
-  const bookFlight = (e) => {
-    e.preventDefault();
+  const bookFlight = (price) => {
+  
+    dispatch(flightPrice(price));
     navigate("/payment");
 
   };
 
   return (
     <div className="outerContainer">
+  
 
     <div className="allFlightsConatainer">
-        {loading ? (
+        { notAvailable ?   <h1>Flights are not available</h1> : loading ? (
           <h1>Loading...</h1>
         ) : (
           allFlights.map((flight) => {
@@ -102,7 +117,7 @@ const AllFlights = () => {
 
                 <div className="width_hundred priceAndBooking">
                   <div className=" price">${flight.price}</div>
-                  <button onClick={bookFlight} id="bookBtn">
+                  <button onClick={()=> bookFlight(flight.price)}  id="bookBtn">
                     BOOK NOW
                   </button>
                 </div>
@@ -110,6 +125,7 @@ const AllFlights = () => {
             );
           })
         )}
+       
       </div>
 
 

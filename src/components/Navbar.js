@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React, {useEffect, useState} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,12 +14,19 @@ import SignUPModal from './SignUpModal';
 import LoginModal from './LoginModal';
 import {Routes, Route} from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { UserLogin } from '../app/SearchSlice';
 // import Home from '../pages/Home';
 // import { Link } from 'react-router-dom';
 
-
-
 export default function Navbar() {
+  
+  const dispatch = useDispatch();
+
+  const login = useSelector(state => state.search.isUserLogin);
+
+  //  const [login, setLogin] = useState(false);
+
   const navigate = useNavigate();
 
    const handleOpen = () =>{
@@ -28,6 +35,24 @@ export default function Navbar() {
    const handleClick = () =>{
        navigate("/")
    }
+   const handleLogout = () =>{
+    //  let data = localStorage.getItem("email");
+
+     localStorage.removeItem("email");
+      dispatch(UserLogin(false));
+    //  setLogin(false);
+      
+   }
+
+   useEffect(()=>{
+        if(localStorage.getItem("email")){
+          dispatch(UserLogin(true));
+        }else {
+          dispatch(UserLogin(false));
+
+        }
+   }, [])
+
   return (
     <Box sx={{ flexGrow: 1 }} >
       <AppBar position="static">
@@ -47,7 +72,14 @@ export default function Navbar() {
             Airbus
           </Typography>
           </Stack>
-          <Button color="inherit" variant='outlined' onClick={handleOpen}>Login</Button>
+          {
+            login ? (
+              <Button color="inherit" variant='outlined' onClick={handleLogout}>Logout</Button>
+
+            ):(
+             <Button color="inherit" variant='outlined' onClick={handleOpen}>Login</Button>
+            )
+          }
           
           {/* <LoginModal /> */}
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -8,6 +8,8 @@ import {MdLockOpen} from "react-icons/md"
 // import {Link} from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import SignUPModal from './SignUpModal';
+import { UserLogin } from '../app/SearchSlice';
+import { useDispatch } from 'react-redux';
 
 import {
   MDBContainer,
@@ -34,7 +36,14 @@ const style = {
 };
 
 export default function LoginModal(props) {
+
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
+
+   const [email, setEmail] = useState("");
+   const [password, setPassword] = useState("");
+
 
 
   const [open, setOpen] = React.useState(true);
@@ -42,11 +51,29 @@ export default function LoginModal(props) {
   const handleClose = () => setOpen(false);
 
 
+
+
   const handleClick = () =>{
-    handleClose();
-    navigate("/signup")
+
+    // if(localStorage.getItem("email")){
+      handleClose();
+      navigate("/signup")
+    // }
+
+  }
+  const handleSignIn = () =>{
+    if(localStorage.getItem("email") === email){
+
+       dispatch(UserLogin(true));
+      handleClose();
 
 
+      navigate("/home");
+
+
+    }else {
+      alert("User not signed in");
+    }
   }
 
   return (
@@ -69,9 +96,9 @@ export default function LoginModal(props) {
         <Box className="text-center">
           <h5>Log In</h5>
       </Box>
-      <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email'/>
-      <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password'/>
-      <MDBBtn className="mb-4">Sign in</MDBBtn>
+      <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email' value={email} onChange={(e)=> setEmail(e.target.value)}/>
+      <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password' value={password} onChange={(e)=> setPassword(e.target.value)}/>
+      <MDBBtn className="mb-4"  onClick={handleSignIn}>Sign in</MDBBtn>
 
       <Box className="text-center">
         <Typography style={{color:"rgb(81,118, 178)", textAlign:"right", textDecoration:"underline"}}>New user? <span onClick={handleClick}>Sign Up</span></Typography>

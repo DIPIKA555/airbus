@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -33,6 +33,11 @@ const style = {
 
 export default function SignUPModal(props) {
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+
   const navigate = useNavigate();
 
   const [open, setOpen] = React.useState(true);
@@ -43,6 +48,15 @@ export default function SignUPModal(props) {
   const handleClick = () =>{
      handleClose();
      navigate("/login")
+  }
+  const handleSignUp = () =>{
+     if(name && email && password ){
+        localStorage.setItem("name", name);
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+       navigate("/login")
+
+     }
   }
 
   return (
@@ -65,10 +79,10 @@ export default function SignUPModal(props) {
         <Box className="text-center">
           <h5>Sign Up</h5>
       </Box>
-      <MDBInput wrapperClass='mb-4' label='Name' id='form1' type='text'/>
-      <MDBInput wrapperClass='mb-4' label='Email address' id='form2' type='email'/>
-      <MDBInput wrapperClass='mb-4' label='Password' id='form3' type='password'/>
-      <MDBBtn className="mb-4">Sign Up</MDBBtn>
+      <MDBInput wrapperClass='mb-4' label='Name' id='form1' type='text'  value = {name} onChange={(e) => setName(e.target.value)}/>
+      <MDBInput wrapperClass='mb-4' label='Email address' id='form2' type='email' value = {email} onChange={(e) => setEmail(e.target.value)}/>
+      <MDBInput wrapperClass='mb-4' label='Password' id='form3' type='password' value = {password} onChange={(e) => setPassword(e.target.value)}/>
+      <MDBBtn className="mb-4" onClick={handleSignUp}>Sign Up</MDBBtn>
 
       <Box className="text-center">
         <Typography style={{color:"rgb(81,118, 178)", textAlign:"right", textDecoration:"underline"}}>Go to <span onClick={handleClick}>Login</span></Typography>
