@@ -62,13 +62,11 @@ export default function SignUPModal(props) {
         localStorage.setItem("email", email);
         localStorage.setItem("password", password);
         // toast.success("Signed up successfully");
-        setTimeout(() =>{
-          navigate("/login")
-         }, 3500)
+       
 
         toast.success("Signed up successfully", {
           position: "top-right",
-          autoClose: 3000,
+          autoClose: 1500,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -76,6 +74,10 @@ export default function SignUPModal(props) {
           progress: undefined,
           theme: "light",
           });
+
+       setTimeout(() =>{
+          navigate("/login")
+         }, 0)
       
         
 

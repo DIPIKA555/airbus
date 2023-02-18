@@ -293,7 +293,10 @@ button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled)
   .css-10e2p1f-MuiStack-root{
     padding: 30px 0 !important;
   }
-  
+  .css-1pjbllt{
+  font-size:.9rem;
+
+}
   
 }
 #cancelButton {
@@ -321,4 +324,11 @@ button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled)
 }
 .css-47nslc [data-first-child]{
     border-radius: 0 !important;
+}
+
+.css-1ecg57q > :not(style){
+ margin: 0 !important;
+}
+p.MuiTypography-root.MuiTypography-body1.css-ahj2mt-MuiTypography-root span {
+    cursor: pointer;
 }
