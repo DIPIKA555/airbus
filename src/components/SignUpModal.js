@@ -7,6 +7,11 @@ import {MdLockOpen} from "react-icons/md"
 // import LockIcon from '@mui/icons-material/Lock';
 import { useNavigate } from 'react-router-dom';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { AiOutlineClose } from "react-icons/ai";
+
 import {
   MDBContainer,
   MDBInput,
@@ -51,16 +56,57 @@ export default function SignUPModal(props) {
   }
   const handleSignUp = () =>{
      if(name && email && password ){
+
+      
         localStorage.setItem("name", name);
         localStorage.setItem("email", email);
         localStorage.setItem("password", password);
-       navigate("/login")
+        // toast.success("Signed up successfully");
+        setTimeout(() =>{
+          navigate("/login")
+         }, 3500)
 
+        toast.success("Signed up successfully", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+      
+        
+
+   
+        // if(localStorage.getItem("email")){
+        //   
+        // }
+     }else {
+      // toast.error("Please fill all fields!")
+      toast.error("Please fill all fields", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
      }
+  }
+
+  const handleCancel = () =>{
+     handleClose();
+     navigate("/");
   }
 
   return (
     <Box>
+     <ToastContainer />
+
       {/* <Button onClick={handleOpen} variant = "outlined" color="inherit" >Sign Up</Button> */}
       <Modal
         open={open}
@@ -68,11 +114,15 @@ export default function SignUPModal(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
+
       <Box bgcolor={"white"} width={"50%"} position="absolute" top="15%" left="25%" transform={"translate(-15%, -25%"}>
       <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
        {/* <MdLockOpen position={"absolute"} size="20px" textAlign="center"/>
         */}
         {/* {LockIcon} */}
+        <AiOutlineClose id="cancelButton" onClick={handleCancel}/>
+
+
         <Box style={{width: "100%", display: 'flex', justifyContent: "center"}}>
           <Typography style={{backgroundColor: "#9c27b0", textAlign: "center", color :"white", width: "30px", padding: "3px", borderRadius: "100px"}}><MdLockOpen/></Typography>
         </Box>

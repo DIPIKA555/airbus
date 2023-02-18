@@ -18,6 +18,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UserLogin } from '../app/SearchSlice';
 // import Home from '../pages/Home';
 // import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 export default function Navbar() {
   
@@ -40,7 +42,19 @@ export default function Navbar() {
 
      localStorage.removeItem("email");
       dispatch(UserLogin(false));
+
+      // toast.success("Logout successfully")
     //  setLogin(false);
+     toast.success("Logout successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       
    }
 
@@ -55,6 +69,7 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }} >
+     <ToastContainer />
       <AppBar position="static">
      <Toolbar style={{display: "flex", justifyContent: "space-around"}}>
         <Stack direction={"row"} alignItems={"center"} justifyContent={"center"}>

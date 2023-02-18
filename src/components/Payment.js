@@ -72,9 +72,7 @@ export default function Payment() {
          ${Number(price)+740}
         </Typography>
         </Stack>
-      
       </CardContent>
-     
     </Card>
       
 
@@ -86,8 +84,8 @@ export default function Payment() {
       <TextField id="outlined-basic" label="CVV" variant="outlined" />
       <Button variant="contained" style={{alignSelf:"flex-start"}} >Pay</Button>
       </Box>
-
-      
+      <h1 id="hidden">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+        
     </Stack>
   );
 }

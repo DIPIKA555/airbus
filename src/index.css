@@ -296,3 +296,23 @@ button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled)
   
   
 }
+#cancelButton {
+  position: absolute;
+  max-width: 100%;
+  /* right: -10px; */
+  top: 25px;
+  right: 35px;
+  font-size: 1.5rem;
+  /* font-weight: bold; */
+  cursor: pointer;
+}
+#hidden{
+  visibility: hidden;
+}
+@media  screen and (min-width: 100px) {
+  #hidden{
+    display: none;
+
+  }
+  
+}

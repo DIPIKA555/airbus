@@ -11,6 +11,11 @@ import SignUPModal from './SignUpModal';
 import { UserLogin } from '../app/SearchSlice';
 import { useDispatch } from 'react-redux';
 
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+import { AiOutlineClose } from "react-icons/ai";
+
+
 import {
   MDBContainer,
   MDBInput,
@@ -67,18 +72,55 @@ export default function LoginModal(props) {
        dispatch(UserLogin(true));
       handleClose();
 
-
-      navigate("/home");
+      
+        
+      toast.success("Login successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+        setTimeout(() =>{
+          navigate("/");
+                
+           }, 3500)
+    
+      
 
 
     }else {
-      alert("User not signed in");
+      // toast.error("First SignUp!")
+      toast.error("First Sign Up!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    
+
     }
+   
+
   }
+  
+  const handleCancel = () =>{
+    handleClose();
+    navigate("/");
+ }
 
   return (
     <Box>
       {/* <Button onClick={handleOpen} variant = "outlined" color="inherit" >Login</Button> */}
+      <ToastContainer />
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -90,6 +132,8 @@ export default function LoginModal(props) {
        {/* <MdLockOpen position={"absolute"} size="20px" textAlign="center"/>
         */}
         {/* {LockIcon} */}
+        <AiOutlineClose id="cancelButton" onClick={handleCancel}/>
+
         <Box style={{width: "100%", display: 'flex', justifyContent: "center"}}>
           <Typography style={{backgroundColor: "#9c27b0", textAlign: "center", color :"white", width: "30px", padding: "3px", borderRadius: "100px"}}><MdLockOpen/></Typography>
         </Box>

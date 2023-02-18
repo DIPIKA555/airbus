@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import FlightMap from "../assets/flightMap.png";
-import PaginationControlled from "./PaginationControlled";
 import { SearchFlights } from "../app/SearchSlice";
 // import { totalFlights } from "../app/SearchSlice";
 import { useNavigate } from "react-router-dom";
 import { flightPrice } from "../app/SearchSlice";
+
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const AllFlights = () => {
   const allSearchState = useSelector(state => state.search);
@@ -73,9 +75,14 @@ const AllFlights = () => {
 
 
   const bookFlight = (price) => {
-  
+    
     dispatch(flightPrice(price));
+    
     navigate("/payment");
+    if(!localStorage.getItem("email")){
+      toast.error("Lorem ipsum dolor");
+
+    }
 
   };
 
@@ -120,11 +127,13 @@ const AllFlights = () => {
                   <button onClick={()=> bookFlight(flight.price)}  id="bookBtn">
                     BOOK NOW
                   </button>
+                  
                 </div>
               </div>
             );
           })
         )}
+       
        
       </div>
 

@@ -35,7 +35,7 @@ export default function BasicCard() {
   return (
     <Box>
       <Card sx={{ minWidth: 300, flexGrow: 1 }}>
-        <CardCover>
+        <CardCover >
           <img src={HeroBgImage} alt="Hero bg Image" />
         </CardCover> 
 
