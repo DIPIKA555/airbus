@@ -65,13 +65,15 @@ export default function LoginModal(props) {
 
   }
   const handleSignIn = () =>{
-    if(localStorage.getItem("email") === email){
+   if(!(email) || !(password)){
+       toast.error("Please fill the input fields!");
 
+   }else if(!(email.includes("@"))){
+     toast.error("Please fill valid email id")
+
+   }else if(localStorage.getItem("email") === email){
        dispatch(UserLogin(true));
       handleClose();
-
-      
-        
       toast.success("Login successfully!", {
         position: "top-right",
         autoClose: 3000,
@@ -92,7 +94,7 @@ export default function LoginModal(props) {
 
     }else {
       // toast.error("First SignUp!")
-      toast.error("First Sign Up!", {
+      toast.error("User not found, please signup", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,

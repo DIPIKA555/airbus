@@ -55,9 +55,10 @@ export default function SignUPModal(props) {
      navigate("/login")
   }
   const handleSignUp = () =>{
-     if(name && email && password ){
 
-      
+    if(!(email.includes("@"))){
+         toast.error("Please fill correct email id");
+    }else if(name && email && password ){
         localStorage.setItem("name", name);
         localStorage.setItem("email", email);
         localStorage.setItem("password", password);
@@ -131,9 +132,9 @@ export default function SignUPModal(props) {
         <Box className="text-center">
           <h5>Sign Up</h5>
       </Box>
-      <MDBInput wrapperClass='mb-4' label='Name' id='form1' type='text'  value = {name} onChange={(e) => setName(e.target.value)}/>
-      <MDBInput wrapperClass='mb-4' label='Email address' id='form2' type='email' value = {email} onChange={(e) => setEmail(e.target.value)}/>
-      <MDBInput wrapperClass='mb-4' label='Password' id='form3' type='password' value = {password} onChange={(e) => setPassword(e.target.value)}/>
+      <MDBInput wrapperClass='mb-4' label='Name' id='form1' type='text' required  value = {name} onChange={(e) => setName(e.target.value)}/>
+      <MDBInput wrapperClass='mb-4' label='Email input' id='typeEmail' type='email' required  value = {email} onChange={(e) => setEmail(e.target.value)}/>
+      <MDBInput wrapperClass='mb-4' label='Password input' id='typePassword' type='password' required value = {password} onChange={(e) => setPassword(e.target.value)}/>
       <MDBBtn className="mb-4" onClick={handleSignUp}>Sign Up</MDBBtn>
 
       <Box className="text-center">
